@@ -11,6 +11,10 @@ let rec run m prog =
                        list;
                      print_newline ()
   | ReadStm v -> Hashtbl.replace m v (read_int ())
+  | IfStm (e, s1, s2) -> if (eval m e) = 0 then
+                            run m s2
+                          else
+                            run m s1
 and eval m exp =
   match exp with
   | NumExp cte -> cte
