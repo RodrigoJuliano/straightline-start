@@ -10,6 +10,7 @@ let rec run m prog =
                        (fun e -> print_int (eval m e); print_char ' ')
                        list;
                      print_newline ()
+  | ReadStm v -> Hashtbl.replace m v (read_int ())
 and eval m exp =
   match exp with
   | NumExp cte -> cte
