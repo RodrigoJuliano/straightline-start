@@ -8,11 +8,11 @@ open Maxargs
   if v then
     r := v - 1;
     while r do begin
-      v := v * r
-      r := r - 1;
+      v := v * r;
+      r := r - 1
     end
   else
-    v := 1
+    v := 1;
   print(v)
 
 *)
