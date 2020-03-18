@@ -9,6 +9,7 @@ type stm = CompoundStm of stm * stm
          | PrintStm of exp list
          | ReadStm of id
          | IfStm of exp * stm * stm
+         | WhileStm of exp * stm
 
  and exp = IdExp of id
          | NumExp of int

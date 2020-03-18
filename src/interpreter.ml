@@ -15,6 +15,9 @@ let rec run m prog =
                             run m s2
                           else
                             run m s1
+  | WhileStm (e, s) -> if (eval m e) != 0 then
+                          run m s;
+                          run m prog
 and eval m exp =
   match exp with
   | NumExp cte -> cte
