@@ -45,3 +45,48 @@ let prog4 =
   b := (print(a, a-1), 10*a);
   print(b)
  *)
+
+let prog5 = CompoundStm ( AssignStm ("a", OpExp (NumExp 5, Plus, NumExp 3)),
+                          CompoundStm ( AssignStm ("b",
+                                                    EseqExp( PrintStm [IdExp "a";
+                                                                        OpExp (IdExp "a", Minus, NumExp 1)],
+                                                              OpExp (NumExp 10, Times, IdExp "a"))),
+                                        PrintStm [IdExp "b"]))
+
+(*
+  read(v);
+  print(v)
+*)
+let prog6 = CompoundStm (ReadStm "x", 
+                        PrintStm [IdExp "x"])
+
+(*
+  if (read(v), v) then
+    print(1)
+  else
+    print(0)
+*)
+let prog7 = IfStm (EseqExp (ReadStm "v", IdExp "v"),
+                    PrintStm [NumExp 1],
+                    PrintStm [NumExp 0])
+
+(*
+  while (read(v), v) do print v
+*)
+let pro8 = WhileStm (EseqExp (ReadStm "v", IdExp "v"),
+                    PrintStm [IdExp "v"])
+
+(*
+  v := 9;
+  while v do begin
+    print(v);
+    v := v - 1
+  end
+*)
+let prog9 = CompoundStm ( AssignStm ("v", NumExp 9),
+                          WhileStm ((IdExp "v"),
+                                    CompoundStm (PrintStm [IdExp "v"],
+                                                  AssignStm ("v",
+                                                              OpExp (IdExp "v",
+                                                                      Minus,
+                                                                      NumExp 1)))))
